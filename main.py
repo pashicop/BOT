@@ -1,16 +1,33 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
+HELP = """ 
+help - напечатать справку
+add - добавить задачу
+show - напечатать все задачи
+random - добавить случайную задачу"""
+tasks = {}
+run = True
+RANDOM_TASKS = "ffhgffg"
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    while run:
+        command = input("Введите команду: ")
+        if command == "help":
+            print(HELP)
+        elif command == "show":
+            task_date = input("Введите дату: ")
+            if task_date in tasks:
+                for task in tasks[task_date]:
+                    print('- ', task)
+            else:
+                print("Такой даты нет")
+        elif command == "add":
+            task_date = input("Введите дату задачи: ")
+            task = input("Введите задачу: ")
+            if task_date in tasks:
+                tasks[task_date].append(task)
+            else:
+                tasks[task_date] = [task]
+            print("Задача добавлена")
+        else:
+            print("Неизвестная команда")
+            # run = False
+            break
+    print("До свидания")
